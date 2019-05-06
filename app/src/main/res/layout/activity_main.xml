@@ -57,7 +57,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/editText_surname"
         android:layout_toEndOf="@+id/textView3"
-        android:layout_toRightOf="@+id/textView3" />
+        android:layout_toRightOf="@+id/textView3"
+        android:inputType="number" />
 
     <Button
         android:id="@+id/button_add"
@@ -113,6 +114,7 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/textView_id"
         android:layout_toEndOf="@+id/textView3"
-        android:layout_toRightOf="@+id/textView3" />
+        android:layout_toRightOf="@+id/textView3"
+        android:inputType="number" />
 
 </RelativeLayout>

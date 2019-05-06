@@ -1,6 +1,7 @@
 package com.example.curdsqlite;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,10 +16,6 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    //    EditText editName,editSurname,editMarks ,editTextId;
-//    Button btnAddData;
-//    Button btnviewAll;
-//    Button btnDelete;
 
     String TAG = MainActivity.class.getName();
     EditText editText_name, editText_surname, editText_Marks, editText_id;
@@ -48,7 +45,24 @@ public class MainActivity extends AppCompatActivity {
         viewAll();
         UpdateData();
         DeleteData();
+
+
+        if (getIntent() != null) {
+
+
+            String id = getIntent().getStringExtra("id");
+
+            String name = getIntent().getStringExtra("name");
+            String surename = getIntent().getStringExtra("surename");
+            String marks = getIntent().getStringExtra("marks");
+            editText_name.setText(name);
+            editText_surname.setText(surename);
+            editText_Marks.setText(marks);
+            editText_id.setText(id);
+
+        }
     }
+
 
     public void DeleteData() {
         button_delete.setOnClickListener(
@@ -124,23 +138,28 @@ public class MainActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Cursor res = myDb.getAllData();
-                        if (res.getCount() == 0) {
-                            // show message
-                            showMessage("Error", "Nothing found");
-                            return;
-                        }
+//                        Cursor res = myDb.getAllData();
+//                        if (res.getCount() == 0) {
+//                            // show message
+//                            showMessage("Error", "Nothing found");
+//                            return;
+//                        }
+//
+//                        StringBuffer buffer = new StringBuffer();
+//                        while (res.moveToNext()) {
+//                            buffer.append("Id :" + res.getString(0) + "\n");
+//                            buffer.append("Name :" + res.getString(1) + "\n");
+//                            buffer.append("Surname :" + res.getString(2) + "\n");
+//                            buffer.append("Marks :" + res.getString(3) + "\n\n");
+//                        }
+//
+//                        // Show all data
+//                        showMessage("Data", buffer.toString());
 
-                        StringBuffer buffer = new StringBuffer();
-                        while (res.moveToNext()) {
-                            buffer.append("Id :" + res.getString(0) + "\n");
-                            buffer.append("Name :" + res.getString(1) + "\n");
-                            buffer.append("Surname :" + res.getString(2) + "\n");
-                            buffer.append("Marks :" + res.getString(3) + "\n\n");
-                        }
 
-                        // Show all data
-                        showMessage("Data", buffer.toString());
+                        startActivity(new Intent(MainActivity.this, RecycActivity.class));
+
+
                     }
                 }
         );
@@ -172,7 +191,6 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_setting) {
-
 
 
             return true;
